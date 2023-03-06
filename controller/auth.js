@@ -1,6 +1,7 @@
-require('dotenv').config();
 const datetime=require('node-datetime');
 const axios= require('axios')
+require('dotenv').config();
+
 const passkey=process.env.PASSKEY;
 const shortcode=process.env.BUSINESSSHORTCODE;
 const consumerkey=process.env.CONSUMERKEY;
@@ -35,7 +36,7 @@ const token=(req,res,next)=>{
         req.token=access_token;
         next();
     })
-    .catch(err=>console.log(err));
+    .catch(err=>console.log(err.message));
 }
 
 //stk push
@@ -49,13 +50,13 @@ const stkPush=(req,res)=>{
  };
  const stkURL='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
  let data={
-    "BusinessShortCode": 174379,
+    "BusinessShortCode": shortcode,
     "Password": newPassword(),
     "Timestamp": formated,
     "TransactionType": "CustomerPayBillOnline",
     "Amount": 1,
     "PartyA": 254703733399,
-    "PartyB": 174379,
+    "PartyB": shortcode,
     "PhoneNumber": 254703733399,
     "CallBackURL": "https://mydomain.com/path",
     "AccountReference": "Imran's Company",
