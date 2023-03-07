@@ -30,18 +30,16 @@ const token=(req,res,next)=>{
     axios.get(url,{
         headers:headers
     }).then((response)=>{
-        //console.log(response.data)
         let data=response.data;
         let access_token=data.access_token;
         req.token=access_token;
         next();
     })
-    .catch(err=>console.log(err.message));
+    .catch(err=>res.send({error:err.message}));
 }
 
 //stk push
 const stkPush=(req,res)=>{
- //res.send('Done!')
  const token=req.token;
  const dt=datetime.create();
  const formated=dt.format('YmdHMS');
@@ -50,15 +48,15 @@ const stkPush=(req,res)=>{
  };
  const stkURL='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
  let data={
-    "BusinessShortCode": shortcode,
+    "BusinessShortCode": shortcode,//for Till use store number
     "Password": newPassword(),
     "Timestamp": formated,
-    "TransactionType": "CustomerPayBillOnline",
+    "TransactionType": "CustomerPayBillOnline",//for Till use -> CustomerBuyGoodsOnline
     "Amount": 1,
     "PartyA": 254703733399,
     "PartyB": shortcode,
     "PhoneNumber": 254703733399,
-    "CallBackURL": "https://mydomain.com/path",
+    "CallBackURL": "https://mydomain.com/path", //A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API. It is the endpoint to which the results will be sent by M-Pesa API.
     "AccountReference": "Imran's Company",
     "TransactionDesc": "Lipa na M-PESA" 
  };
@@ -67,12 +65,21 @@ const stkPush=(req,res)=>{
  }).then(response=>
     res.send(response.data)
     )
-// res.send(token)
+}
+
+//callback 
+const callBack=async(req,res)=>{
+    try {
+        
+    } catch (error) {
+        res.status(500).send({error:error.message})
+    }
 }
 
 
 module.exports={
     mpesaPassword,
     token,
-    stkPush
+    stkPush,
+    callBack
 }
