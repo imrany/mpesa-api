@@ -10,7 +10,6 @@ const Schema=mongoose.Schema;
 // PhoneNumber:CallbackMetadata.Item[3].Value
 
 const transactionSchema=new Schema({
-    stkCallBack:{
         MerchantRequestID:{
             type:String,
             require:true
@@ -40,7 +39,6 @@ const transactionSchema=new Schema({
             type:Number,
             require:true
         }
-    }
 },{
     timestamps:true
 })
