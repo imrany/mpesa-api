@@ -89,7 +89,7 @@ const callBack=async(req,res)=>{
 
             if(stored){
                 res.send({msg:"Recieved"})
-                console,log({msg:"Transaction process was successfull"},req.body)
+                console.log({msg:"Transaction process was successfull"},req.body)
             }else{
                 res.send({msg:"Recieved"})
                 console.log({error:"Transaction data wasn't stored"},req.body)
