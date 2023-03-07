@@ -75,12 +75,14 @@ const stkPush=(req,res)=>{
 //callback 
 const callBack=async(req,res)=>{
     try {
-        const stored=await Transaction.create(...req.body);
-        if(stored){
-            res.send({msg:"Call back data stored"},req.body)
-        }else{
-            res.send({error:"Not stored"},req.body)
-        }
+        // const stored=await Transaction.create(...req.body);
+        // if(stored){
+        //     res.send({msg:"Call back data stored"},req.body)
+        // }else{
+        //     res.send({error:"Not stored"},req.body)
+        // }
+        const stored=req.body;
+        console.log(stored)
     } catch (error) {
         res.status(500).send({error:error.message})
     }
