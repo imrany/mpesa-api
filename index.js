@@ -23,5 +23,5 @@ mongoose.connect(process.env.DATABASE,{
         console.log(`Server opening at Port ${port}`)
     })
 }).catch(err=>console.log(err));
-mongoose.Promise=global.Promise
+mongoose.Promise=global.Promise;
 
