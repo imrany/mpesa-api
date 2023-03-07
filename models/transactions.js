@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-const Schema=mongoose.Schema;
 
 // MerchantRequestID,
 // ResultCode,
@@ -9,7 +8,7 @@ const Schema=mongoose.Schema;
 // TransactionDate:CallbackMetadata.Item[2].Value,
 // PhoneNumber:CallbackMetadata.Item[3].Value
 
-const transactionSchema=new Schema({
+const transactionSchema=mongoose.Schema({
         MerchantRequestID:{
             type:String,
             require:true
