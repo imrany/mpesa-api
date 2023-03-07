@@ -77,7 +77,7 @@ const callBack=async(req,res)=>{
     try {
         const {MerchantRequestID,ResultCode,ResultDesc,CallbackMetadata}=req.body.Body.stkCallback;
         if(CallbackMetadata){
-            console.log({
+            const stored=await Transaction.create({
                 MerchantRequestID,
                 ResultCode,
                 ResultDesc,
@@ -85,24 +85,10 @@ const callBack=async(req,res)=>{
                 MpesaReceiptNo:CallbackMetadata.Item[1].Value,
                 TransactionDate:CallbackMetadata.Item[2].Value,
                 PhoneNumber:CallbackMetadata.Item[3].Value
-            },req.body)
-            // const stored=await Transaction.create({
-                // MerchantRequestID,
-                // ResultCode,
-                // ResultDesc,
-                // amount:CallbackMetadata.Item[0].Value,
-                // MpesaReceiptNo:CallbackMetadata.Item[1].Value,
-                // TransactionDate:CallbackMetadata.Item[2].Value,
-                // PhoneNumber:CallbackMetadata.Item[3].Value
-            // });
+            });
 
-            // if(stored){
-            //     res.send({msg:"Recieved"})
-            //     console.log({msg:"Transaction process was successfull"},req.body)
-            // }else{
-            //     res.send({msg:"Recieved"})
-            //     console.log({error:"Transaction data wasn't stored"},req.body)
-            // }
+              res.send({msg:"Recieved"})
+              console.log({msg:"Transaction process was successfull"},stored)
         }else{
             res.send({msg:"Recieved"})
             console.log({msg:"Transaction process was cancelled"},req.body)
