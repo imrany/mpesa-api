@@ -57,7 +57,7 @@ const stkPush=(req,res)=>{
     "PartyA": 254703733399,
     "PartyB": shortcode,
     "PhoneNumber": 254703733399,
-    "CallBackURL": "https://mydomain.com/path", //A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API. It is the endpoint to which the results will be sent by M-Pesa API.
+    "CallBackURL": "https://mpesa-api.onrender.com/api/callback", //A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API. It is the endpoint to which the results will be sent by M-Pesa API.
     "AccountReference": "Imran's Company",
     "TransactionDesc": "Lipa na M-PESA" 
  };
