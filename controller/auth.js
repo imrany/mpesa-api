@@ -7,6 +7,9 @@ const passkey=process.env.PASSKEY;
 const shortcode=process.env.BUSINESSSHORTCODE;
 const consumerkey=process.env.CONSUMERKEY;
 const consumersecret=process.env.CONSUMERSECRET;
+const callBack_Url=process.env.CALLBACK_URL;
+const accountRef=process.env.ACCOUNT_REF;
+const transactionsDesc=process.env.TRANSACTION_DESC;
 
 //to generate password
 const newPassword=()=>{
@@ -41,6 +44,7 @@ const token=(req,res,next)=>{
 
 //stk push
 const stkPush=(req,res)=>{
+ const {phoneNumber,amount}=req.body;
  const token=req.token;
  const dt=datetime.create();
  const formated=dt.format('YmdHMS');
@@ -53,13 +57,13 @@ const stkPush=(req,res)=>{
     "Password": newPassword(),
     "Timestamp": formated,
     "TransactionType": "CustomerPayBillOnline",//for Till use -> CustomerBuyGoodsOnline
-    "Amount": 1,
-    "PartyA": 254703733399,
+    "Amount": amount,
+    "PartyA": 254+phoneNumber, //254703733399
     "PartyB": shortcode,
-    "PhoneNumber": 254703733399,
-    "CallBackURL": "https://mpesa-api.onrender.com/api/callback", //A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API. It is the endpoint to which the results will be sent by M-Pesa API.
-    "AccountReference": "Imran's Company",
-    "TransactionDesc": "Lipa na M-PESA" 
+    "PhoneNumber": 254+phoneNumber, //254703733399
+    "CallBackURL": callBack_Url, //A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API. It is the endpoint to which the results will be sent by M-Pesa API.
+    "AccountReference": accountRef,
+    "TransactionDesc": transactionsDesc
  };
  axios.post(stkURL,data,{
     headers:headers
