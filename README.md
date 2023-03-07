@@ -128,3 +128,17 @@ Whenever you receive an error in your callback url, the unsuccessful transaction
    }
 }
 ```
+
+## .env.sample
+Contains the environment variable needed to run this project
+```json
+PASSKEY=
+BUSINESSSHORTCODE=
+CONSUMERKEY=
+CONSUMERSECRET=
+DATABASE=
+CALLBACK_URL=
+ACCOUNT_REF=
+TRANSACTION_DESC=
+PROCESS_DESC=
+```
