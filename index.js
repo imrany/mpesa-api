@@ -13,6 +13,7 @@ app.use(cors());
 app.use('/api', require('./router/api'))
  
 //connect to momgodb
+mongoose.set('strictQuery', false);
 mongoose.connect(process.env.DATABASE,{
     useNewUrlParser:true,
     useUnifiedTopology:true
