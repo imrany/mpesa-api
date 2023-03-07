@@ -58,10 +58,10 @@ const stkPush=(req,res)=>{
     "Timestamp": formated,
     "TransactionType": "CustomerPayBillOnline",//for Till use -> CustomerBuyGoodsOnline
     "Amount": amount,
-    "PartyA": 254+phoneNumber, //254703733399
+    "PartyA": `254${phoneNumber}`, //254703730090
     "PartyB": shortcode,
-    "PhoneNumber": 254+phoneNumber, //254703733399
-    "CallBackURL": callBack_Url, //A CallBack URL is a valid secure URL that is used to receive notifications from M-Pesa API. It is the endpoint to which the results will be sent by M-Pesa API.
+    "PhoneNumber": `254${phoneNumber}`, //254703730090
+    "CallBackURL": callBack_Url, 
     "AccountReference": accountRef,
     "TransactionDesc": transactionsDesc
  };
