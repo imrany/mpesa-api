@@ -88,14 +88,14 @@ const callBack=async(req,res)=>{
             });
 
             if(stored){
-                // res.send({msg:"Transaction process was successfull"},req.body)
+                res.send({msg:"Recieved"})
                 console,log({msg:"Transaction process was successfull"},req.body)
             }else{
-                // res.send({error:"Transaction data wasn't stored"},req.body)
+                res.send({msg:"Recieved"})
                 console.log({error:"Transaction data wasn't stored"},req.body)
             }
         }else{
-            // res.send({msg:"Transaction process was cancelled"},req.body)
+            res.send({msg:"Recieved"})
             console.log({msg:"Transaction process was cancelled"},req.body)
         }
     } catch (error) {
