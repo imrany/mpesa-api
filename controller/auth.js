@@ -75,8 +75,8 @@ const stkPush=(req,res)=>{
 //callback 
 const callBack=async(req,res)=>{
     try {
-        const {MerchantRequestID,ResultCode,ResultDesc}=req.body.Body.stkCallback;
-        if(ResultDesc.includes(process.env.PROCESS_DESC)){
+        const {MerchantRequestID,ResultCode,ResultDesc,CallbackMetadata}=req.body.Body.stkCallback;
+        if(CallbackMetadata){
             const stored=await Transaction.create({
                 MerchantRequestID,
                 ResultCode,
