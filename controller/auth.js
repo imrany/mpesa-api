@@ -1,5 +1,6 @@
 const datetime=require('node-datetime');
-const axios= require('axios')
+const axios= require('axios');
+const Transaction=require('../models/transactions');
 require('dotenv').config();
 
 const passkey=process.env.PASSKEY;
@@ -70,7 +71,12 @@ const stkPush=(req,res)=>{
 //callback 
 const callBack=async(req,res)=>{
     try {
-        
+        const stored=await Transaction.create(...req.body);
+        if(stored){
+            res.send({msg:"Call back data stored"},req.body)
+        }else{
+            res.send({error:"Not stored"},req.body)
+        }
     } catch (error) {
         res.status(500).send({error:error.message})
     }
