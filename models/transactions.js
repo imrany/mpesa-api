@@ -1,20 +1,45 @@
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
-const itemSchema=new Schema({
-    Item:{
-        Name:String,
-        Amount:String
-    }
-});
+// MerchantRequestID,
+// ResultCode,
+// ResultDesc,
+// amount:CallbackMetadata.Item[0].Value,
+// MpesaReceiptNo:CallbackMetadata.Item[1].Value,
+// TransactionDate:CallbackMetadata.Item[2].Value,
+// PhoneNumber:CallbackMetadata.Item[3].Value
 
 const transactionSchema=new Schema({
     stkCallBack:{
-        MerchantRequestID:String,
-        CheckoutRequestID:String,
-        ResultCode:Number,
-        ResultDesc:String,
-        CallbackMetadata:itemSchema,
+        MerchantRequestID:{
+            type:String,
+            require:true
+        },
+        ResultCode:{
+            type:Number,
+            require:true
+        },
+        ResultDesc:{
+            type:String,
+            require:true
+        },
+        amount:{
+            type:Number,
+            require:true
+        },
+        MpesaReceiptNo:{
+            type:String,
+            require:true,
+            unique:true
+        },
+        TransactionDate:{
+            type:Number,
+            require:true
+        },
+        PhoneNumber:{
+            type:Number,
+            require:true
+        }
     }
 },{
     timestamps:true
