@@ -83,8 +83,8 @@ const callBack=async(req,res)=>{
                 ResultDesc,
                 amount:CallbackMetadata.Item[0].Value,
                 MpesaReceiptNo:CallbackMetadata.Item[1].Value,
-                TransactionDate:CallbackMetadata.Item[2].Value,
-                PhoneNumber:CallbackMetadata.Item[3].Value
+                TransactionDate:CallbackMetadata.Item[3].Value,
+                PhoneNumber:CallbackMetadata.Item[4].Value
             });
 
               res.send({msg:"Recieved"})
