@@ -83,7 +83,8 @@ Once your API request is received, authorized and authenticated, you will receiv
 
 
 ## callback url
-Response sent to the secure callback url is the transaction is successful
+Response sent to the secure callback url is the transaction is successful.
+The CallBack URL should be a valid secure URL that can be used to receive notifications from M-Pesa API. It's the endpoint to which the results will be sent by M-Pesa API.
 ```json
 {    
    "Body": {        
