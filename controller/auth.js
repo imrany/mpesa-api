@@ -98,10 +98,20 @@ const callBack=async(req,res)=>{
     }
 }
 
+//get transactions
+const getTransaction=async(req,res)=>{
+    try {
+        const transc=await Transaction.find({});
+        res.send({msg:"transaction data", transc})
+    } catch (error) {
+        res.status(500).send({error:error.message})
+    }
+}
 
 module.exports={
     mpesaPassword,
     token,
     stkPush,
-    callBack
+    callBack,
+    getTransaction
 }
