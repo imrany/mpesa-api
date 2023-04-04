@@ -112,10 +112,26 @@ const getTransaction=async(req,res)=>{
     }
 }
 
+//check if transaction suceeds or fail
+const checkTransaction=async(req,res)=>{
+    try {
+        const {MerchantRequestID}=req.body
+        const transc=await Transaction.findOne({MerchantRequestID})
+        if (transc){
+            res.send({msg:"Transaction successfull",transc})
+        }else{
+            res.send({error:"Transaction failed"})
+        }
+    } catch (error) {
+        res.status(500).send({error:error.message})
+    }
+}
+
 module.exports={
     mpesaPassword,
     token,
     stkPush,
     callBack,
-    getTransaction
+    getTransaction,
+    checkTransaction
 }
