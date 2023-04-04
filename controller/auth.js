@@ -102,7 +102,11 @@ const callBack=async(req,res)=>{
 const getTransaction=async(req,res)=>{
     try {
         const transc=await Transaction.find({});
-        res.send({msg:"transaction data", transc})
+        if(transc){
+            res.send({msg:"transaction data", transc})
+        }else{
+            res.send({error:"transaction failed", transc})
+        }
     } catch (error) {
         res.status(500).send({error:error.message})
     }
