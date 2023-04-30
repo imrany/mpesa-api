@@ -19,10 +19,9 @@ mongoose.connect(process.env.DATABASE,{
     useUnifiedTopology:true
 }).then(()=>{
     //listening to server
-    
-}).catch(err=>console.log(err));
-mongoose.Promise=global.Promise;
-const port=process.env.PORT||5000;
+    const port=process.env.PORT||5000;
     app.listen(port,()=>{
         console.log(`Server opening at Port ${port}`)
     })
+}).catch(err=>console.log(err));
+mongoose.Promise=global.Promise;
