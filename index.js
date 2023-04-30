@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser=require('body-parser');
 const cors=require('cors');
 require('dotenv').config();
+
 const app = express();
- 
-//bodyparser middleware
-app.use(bodyParser.json());
-app.use(express.urlencoded({extended:true}));
+
+//middleware
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 app.use(cors());
 //router middleware
 app.use('/api', require('./router/api'))
@@ -19,10 +19,10 @@ mongoose.connect(process.env.DATABASE,{
     useUnifiedTopology:true
 }).then(()=>{
     //listening to server
-    const port=process.env.PORT||5000;
+    
+}).catch(err=>console.log(err));
+mongoose.Promise=global.Promise;
+const port=process.env.PORT||5000;
     app.listen(port,()=>{
         console.log(`Server opening at Port ${port}`)
     })
-}).catch(err=>console.log(err));
-mongoose.Promise=global.Promise;
-

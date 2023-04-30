@@ -20,10 +20,6 @@ const newPassword=()=>{
     return base64string;
 }
 
-const mpesaPassword=(req,res)=>{
-    res.send({'password':newPassword()})
-}
-
 //token
 const token=(req,res,next)=>{
     const url= 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
@@ -49,7 +45,7 @@ const stkPush=(req,res)=>{
  const dt=datetime.create();
  const formated=dt.format('YmdHMS');
  const headers={
-    Authorization:'Bearer '+token
+    Authorization:`Bearer ${token}`
  };
  const stkURL='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
  let data={
@@ -67,9 +63,8 @@ const stkPush=(req,res)=>{
  };
  axios.post(stkURL,data,{
     headers:headers
- }).then(response=>
-    res.send(response.data)
-    )
+ }).then(response=>res.send(response.data))
+ .catch(err=>res.send({error:err.response.data}))
 }
 
 //callback 
@@ -109,7 +104,6 @@ const getTransaction=async(req,res)=>{
 }
 
 module.exports={
-    mpesaPassword,
     token,
     stkPush,
     callBack,
