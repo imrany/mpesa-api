@@ -12,6 +12,9 @@ Install dependencies
 npm install
 ``` 
 
+```bash
+docker-compose up -d
+```
 ## Generate a token
 
 In order to send request to the daraja api you need to generate a token.
